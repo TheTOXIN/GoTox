@@ -6,7 +6,7 @@ import com.toxin.gotox.GoTox;
 
 public class DesktopLauncher {
 	public static void main (String[] arg) {
-		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-		new LwjglApplication(new GoTox(), config);
+		//LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
+		//new LwjglApplication(new GoTox(), config);
 	}
 }

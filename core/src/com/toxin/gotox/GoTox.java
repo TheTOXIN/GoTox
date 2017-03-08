@@ -15,8 +15,22 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreetypeFontLoader;
 import com.boontaran.games.StageGame;
 
 public class GoTox extends Game {
+
+	public static final int SHOW_BANNER = 1;
+	public static final int HIDE_BANNER = 2;
+	public static final int LOAD_INTERSITIAL = 3;
+	public static final int SHOW_INTERSITIAL = 4;
+	public static final int OPEN_MARKET = 5;
+	public static final int SHARE = 6;
+
 	private boolean loadingsAssets = false;
 	private AssetManager assetManager;
+
+	private GameCallBack gameCallBack;
+
+	public GoTox(GameCallBack gameCallBack) {
+		this.gameCallBack = gameCallBack;
+	}
 
 	public static TextureAtlas atlas;
 	public static BitmapFont myFont;

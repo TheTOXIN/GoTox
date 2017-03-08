@@ -2,5 +2,8 @@
 <resources>
 
     <string name="app_name">GoTox</string>
+    <string name="share_url">https://play.google.com/store/apps/details?id=com.toxin.gotox</string>
+    <string name="share_title">GoTox</string>
+    <string name="share_body">This is the best game!!! \n</string>
 
 </resources>
