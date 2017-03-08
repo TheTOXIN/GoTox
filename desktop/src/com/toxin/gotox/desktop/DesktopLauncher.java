@@ -2,11 +2,27 @@ package com.toxin.gotox.desktop;
 
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
+import com.toxin.gotox.GameCallBack;
 import com.toxin.gotox.GoTox;
 
 public class DesktopLauncher {
-	public static void main (String[] arg) {
-		//LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-		//new LwjglApplication(new GoTox(), config);
+	public DesktopLauncher () {
+		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
+
+		config.width = 800;
+		config.height = 400;
+
+		new LwjglApplication(new GoTox(gameCallBack), config);
+	}
+
+	private GameCallBack gameCallBack = new GameCallBack() {
+		@Override
+		public void sendMessage(int message) {
+			System.out.println("DesktopLauncher sendMessage: " + message);
+		}
+	};
+
+	public static void main(String[] args) {
+		new DesktopLauncher();
 	}
 }

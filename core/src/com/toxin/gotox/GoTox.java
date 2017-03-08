@@ -12,7 +12,10 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGeneratorLoader;
 import com.badlogic.gdx.graphics.g2d.freetype.FreetypeFontLoader;
+import com.badlogic.gdx.utils.I18NBundle;
 import com.boontaran.games.StageGame;
+
+import java.util.Locale;
 
 public class GoTox extends Game {
 
@@ -28,12 +31,15 @@ public class GoTox extends Game {
 
 	private GameCallBack gameCallBack;
 
-	public GoTox(GameCallBack gameCallBack) {
-		this.gameCallBack = gameCallBack;
-	}
+	private I18NBundle bundle;
+	private String path_to_atlas;
 
 	public static TextureAtlas atlas;
 	public static BitmapFont myFont;
+
+	public GoTox(GameCallBack gameCallBack) {
+		this.gameCallBack = gameCallBack;
+	}
 	
 	@Override
 	public void create () {
@@ -41,9 +47,13 @@ public class GoTox extends Game {
 
 		Gdx.input.setCatchBackKey(true);
 
+		Locale locale = Locale.getDefault();
+		bundle = I18NBundle.createBundle(Gdx.files.internal("MyBundle"), locale);
+		path_to_atlas = bundle.get("path");
+
 		loadingsAssets = true;
 		assetManager = new AssetManager();
-		assetManager.load("images_ru/pack.atlas", TextureAtlas.class);
+		assetManager.load(path_to_atlas, TextureAtlas.class);
 		assetManager.load("musics/music1.ogg", Music.class);
 		assetManager.load("musics/level_failed.ogg", Music.class);
 		assetManager.load("musics/level_win.ogg", Music.class);
