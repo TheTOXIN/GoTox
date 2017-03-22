@@ -6,7 +6,7 @@ public class Data {
 
     private DataManager manager;
 
-    private static final String PREFERENCE_NAME = "GoTox_Data";
+    private static final String PREFERENCE_NAME = "lunar_rover_data";
     private static final String PROGRESS_KEY = "progress";
 
     public Data() {
@@ -14,7 +14,7 @@ public class Data {
     }
 
     public int getProgress() {
-        return manager.getInt(PROGRESS_KEY, 1);
+        return  manager.getInt(PROGRESS_KEY, 1);
     }
 
     public void setProgress(int progress) {

@@ -14,6 +14,12 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGeneratorLoader;
 import com.badlogic.gdx.graphics.g2d.freetype.FreetypeFontLoader;
 import com.badlogic.gdx.utils.I18NBundle;
 import com.boontaran.games.StageGame;
+import com.toxin.gotox.media.Media;
+import com.toxin.gotox.screens.Intro;
+import com.toxin.gotox.screens.LevelList;
+import com.toxin.gotox.utils.Data;
+
+import java.lang.String;
 
 import java.util.Locale;
 
@@ -27,15 +33,18 @@ public class GoTox extends Game {
 	public static final int SHARE = 6;
 
 	private boolean loadingsAssets = false;
+
 	private AssetManager assetManager;
-
 	private GameCallBack gameCallBack;
-
 	private I18NBundle bundle;
 	private String path_to_atlas;
+	private Intro intro;
+	private LevelList levelList;
 
 	public static TextureAtlas atlas;
-	public static BitmapFont myFont;
+	public static BitmapFont font40;
+	public static Media media;
+	public static Data data;
 
 	public GoTox(GameCallBack gameCallBack) {
 		this.gameCallBack = gameCallBack;
@@ -70,7 +79,10 @@ public class GoTox extends Game {
 		sizeParams.fontFileName = "fonts/a_FuturicaExtraBlack.ttf";
 		sizeParams.fontParameters.size = 40;
 
-		assetManager.load("myFont.ttf", BitmapFont.class, sizeParams);
+		assetManager.load("font40.ttf", BitmapFont.class, sizeParams);
+
+		media = new Media(assetManager);
+		data = new Data();
 	}
 
 	@Override
@@ -92,10 +104,65 @@ public class GoTox extends Game {
 
 	public void onAssetsLoaded() {
 		atlas = assetManager.get("images_ru/pack.atlas", TextureAtlas.class);
-		myFont = assetManager.get("fonts/a_FuturicaExtraBlack.ttf", BitmapFont.class);
+		font40 = assetManager.get("font40.ttf", BitmapFont.class);
+
+		showIntro();
 	}
 
-	public void exitApp() {
+	private void exitApp() {
 		Gdx.app.exit();
+	}
+
+	private void showIntro() {
+		intro = new Intro();
+		setScreen(intro);
+
+		intro.setCallback(new StageGame.Callback() {
+			@Override
+			public void call(int code) {
+				if (code == Intro.ON_PLAY) {
+					showLevelList();
+					hideIntro();
+				} else if (code == Intro.ON_BACK) {
+					exitApp();
+				}
+			}
+		});
+
+		media.playMusic("music1.ogg", true);
+	}
+
+	private void hideIntro() {
+		intro = null;
+	}
+
+	private void showLevelList() {
+		levelList = new LevelList();
+		setScreen(levelList);
+
+		levelList.setCallback(new StageGame.Callback() {
+			@Override
+			public void call(int code) {
+				if (code == LevelList.ON_BACK) {
+					showIntro();
+					hideLevelList();
+				} else if (code == LevelList.ON_LEVEL_SELECTED) {
+					//showLevel();
+					hideLevelList();
+				} else if (code == LevelList.ON_OPEN_MARKET) {
+					gameCallBack.sendMessage(OPEN_MARKET);
+				} else if (code == LevelList.ON_SHARE) {
+					gameCallBack.sendMessage(SHARE);
+				}
+			}
+		});
+
+		gameCallBack.sendMessage(SHOW_BANNER);
+		media.playMusic("music1.ogg", true);
+	}
+
+	private void hideLevelList() {
+		levelList = null;
+		gameCallBack.sendMessage(HIDE_BANNER);
 	}
 }

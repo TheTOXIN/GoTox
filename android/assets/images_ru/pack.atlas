@@ -6,7 +6,7 @@ filter: MipMapLinearNearest,Linear
 repeat: none
 astronaut
   rotate: false
-  xy: 1730, 632
+  xy: 1152, 123
   size: 61, 80
   orig: 61, 80
   offset: 0, 0
@@ -20,7 +20,7 @@ astronaut_fall
   index: -1
 astronaut_model
   rotate: false
-  xy: 966, 39
+  xy: 1730, 642
   size: 53, 70
   orig: 53, 70
   offset: 0, 0
@@ -41,14 +41,14 @@ done_btn_down
   index: -1
 front_wheel
   rotate: false
-  xy: 1987, 884
+  xy: 729, 12
   size: 40, 40
   orig: 40, 40
   offset: 0, 0
   index: -1
 rear_wheel
   rotate: false
-  xy: 1987, 884
+  xy: 729, 12
   size: 40, 40
   orig: 40, 40
   offset: 0, 0
@@ -104,7 +104,7 @@ jump1
   index: -1
 jump1_down
   rotate: false
-  xy: 1124, 309
+  xy: 966, 177
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
@@ -118,14 +118,14 @@ jump2
   index: -1
 jump2_down
   rotate: false
-  xy: 1226, 309
+  xy: 966, 75
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: -1
 jump_gauge_off
   rotate: false
-  xy: 1622, 615
+  xy: 804, 58
   size: 8, 7
   orig: 8, 7
   offset: 0, 0
@@ -153,7 +153,7 @@ level_completed
   index: -1
 level_icon_bg
   rotate: false
-  xy: 966, 195
+  xy: 1230, 327
   size: 82, 82
   orig: 82, 82
   offset: 0, 0
@@ -177,6 +177,13 @@ level_icon_lock
   xy: 1304, 537
   size: 30, 41
   orig: 30, 41
+  offset: 0, 0
+  index: -1
+logo
+  rotate: false
+  xy: 1124, 289
+  size: 104, 120
+  orig: 104, 120
   offset: 0, 0
   index: -1
 paused
@@ -223,14 +230,14 @@ quit_btn_down
   index: -1
 rate
   rotate: false
-  xy: 966, 111
+  xy: 1931, 788
   size: 82, 82
   orig: 82, 82
   offset: 0, 0
   index: -1
 rate_down
   rotate: false
-  xy: 1050, 195
+  xy: 1068, 195
   size: 82, 82
   orig: 82, 82
   offset: 0, 0
@@ -265,14 +272,14 @@ rover_model
   index: -1
 share
   rotate: false
-  xy: 1050, 111
+  xy: 1068, 111
   size: 82, 82
   orig: 82, 82
   offset: 0, 0
   index: -1
 share_down
   rotate: false
-  xy: 1931, 788
+  xy: 1152, 205
   size: 82, 82
   orig: 82, 82
   offset: 0, 0
