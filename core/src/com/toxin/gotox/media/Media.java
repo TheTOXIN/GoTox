@@ -3,7 +3,6 @@ package com.toxin.gotox.media;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
-import java.lang.String;
 
 public class Media {
     private AssetManager assetManager;

@@ -66,7 +66,7 @@ public class AndroidLauncher extends AndroidApplication {
 					}
 				});
 
-			} else if (message == GoTox.SHOW_INTERSITIAL) {
+			} else if (message == GoTox.SHOW_INTERSTITIAL) {
 				AndroidLauncher.this.runOnUiThread(new Runnable() {
 					@Override
 					public void run() {
@@ -74,7 +74,7 @@ public class AndroidLauncher extends AndroidApplication {
 					}
 				});
 
-			} else if (message == GoTox.LOAD_INTERSITIAL) {
+			} else if (message == GoTox.LOAD_INTERSTITIAL) {
 
 			} else if (message == GoTox.OPEN_MARKET) {
 				Uri uri = Uri.parse(getString(R.string.share_url));
