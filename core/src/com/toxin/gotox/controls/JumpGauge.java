@@ -10,16 +10,18 @@ import com.toxin.gotox.GoTox;
 public class JumpGauge  extends Group{
 
     private Array<Image> offs, ons;
+
     private final float TIME = 0.5f;
     private float time = 0;
+
     private boolean counting = false;
 
     public JumpGauge() {
         setTouchable(Touchable.disabled);
         Image box;
 
-        offs = new Array<Image>();
-        ons = new Array<Image>();
+        offs = new Array<>();
+        ons = new Array<>();
         NinePatch patch = new NinePatch(GoTox.atlas.findRegion("jump_gauge_off"), 3,3,3,3);
 
         int i;

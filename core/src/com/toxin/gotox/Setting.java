@@ -8,4 +8,7 @@ public class Setting {
     public static final float GRAVITY = 8;
     public static final float JUMP_IMPULSE = 80;
     public static final float WHEEL_TORQUE = 50;
+    
+    public static final int WIDTH_SCREEN = 800;
+    public static final int HEIGHT_SCREEN = 480;
 }

@@ -20,5 +20,4 @@ public class Data {
     public void setProgress(int progress) {
         manager.saveInt(PROGRESS_KEY, progress);
     }
-
 }

@@ -4,25 +4,25 @@ import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import com.toxin.gotox.GameCallBack;
 import com.toxin.gotox.GoTox;
+import com.toxin.gotox.Setting;
 
 public class DesktopLauncher {
-	public DesktopLauncher () {
-		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 
-		config.width = 800;
-		config.height = 480;
+    private DesktopLauncher() {
+        LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 
-		new LwjglApplication(new GoTox(gameCallBack), config);
-	}
+        config.width = Setting.WIDTH_SCREEN;
+        config.height = Setting.HEIGHT_SCREEN;
 
-	private GameCallBack gameCallBack = new GameCallBack() {
-		@Override
-		public void sendMessage(int message) {
-			System.out.println("DesktopLauncher sendMessage: " + message);
-		}
-	};
+        GameCallBack gameCallBack = message -> System.out.println("DesktopLauncher sendMessage: " + message);
 
-	public static void main(String[] args) {
-		new DesktopLauncher();
-	}
+        new LwjglApplication(
+            new GoTox(gameCallBack),
+            config
+        );
+    }
+
+    public static void main(String[] args) {
+        new DesktopLauncher();
+    }
 }

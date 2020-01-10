@@ -12,9 +12,12 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.toxin.gotox.GoTox;
 
 public class LevelIcon extends Group {
+
     private int id;
+
     private Label label;
     private Image lockImg, bg, bgDown, hiliteImg;
+
     private boolean isHilited = false;
     private boolean alphaUp = false;
 
@@ -53,12 +56,9 @@ public class LevelIcon extends Group {
 
         setLock(true);
 
-        addCaptureListener(new EventListener() {
-            @Override
-            public boolean handle(Event event) {
-                event.setTarget(LevelIcon.this);
-                return true;
-            }
+        addCaptureListener(event -> {
+            event.setTarget(LevelIcon.this);
+            return true;
         });
 
         addListener(new ClickListener() {
@@ -74,10 +74,6 @@ public class LevelIcon extends Group {
                 super.touchUp(event, x, y, pointer, button);
             }
         });
-    }
-
-    public int getId() {
-        return id;
     }
 
     public void setLock(boolean lock) {
@@ -119,5 +115,9 @@ public class LevelIcon extends Group {
         }
 
         super.act(delta);
+    }
+
+    public int getId() {
+        return id;
     }
 }

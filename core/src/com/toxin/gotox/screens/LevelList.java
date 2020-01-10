@@ -14,19 +14,28 @@ import com.toxin.gotox.Setting;
 import com.toxin.gotox.media.LevelIcon;
 
 public class LevelList extends StageGame {
+
     public static final int ON_BACK = 1;
     public static final int ON_LEVEL_SELECTED = 2;
     public static final int ON_OPEN_MARKET = 3;
     public static final int ON_SHARE = 4;
 
-    private Group container;
     private int selectedLevelId = 0;
+
+    private ClickListener iconListener = new ClickListener() {
+        @Override
+        public void clicked(InputEvent event, float x, float y) {
+            selectedLevelId = ((LevelIcon)event.getTarget()).getId();
+            GoTox.media.playSound("click.ogg");
+            call(ON_LEVEL_SELECTED);
+        }
+    };
 
     public LevelList() {
         Image bg = new Image(GoTox.atlas.findRegion("intro_bg"));
         addBackground(bg, true, false);
 
-        container = new Group();
+        Group container = new Group();
         addChild(container);
 
         int row = 4, col = 4;
@@ -76,8 +85,10 @@ public class LevelList extends StageGame {
         container.setColor(1, 1, 1, 0);
         container.addAction(Actions.alpha(1, 0.4f));
 
-        ImageButton rateBtn = new ImageButton(new TextureRegionDrawable(GoTox.atlas.findRegion("rate")),
-                new TextureRegionDrawable(GoTox.atlas.findRegion("rate_down")));
+        ImageButton rateBtn = new ImageButton(
+            new TextureRegionDrawable(GoTox.atlas.findRegion("rate")),
+            new TextureRegionDrawable(GoTox.atlas.findRegion("rate_down"))
+        );
 
         addChild(rateBtn);
         rateBtn.setX(getWidth() - rateBtn.getWidth() - 20);
@@ -90,8 +101,10 @@ public class LevelList extends StageGame {
             }
         });
 
-        ImageButton shareBtn = new ImageButton(new TextureRegionDrawable(GoTox.atlas.findRegion("share")),
-                new TextureRegionDrawable(GoTox.atlas.findRegion("share_down")));
+        ImageButton shareBtn = new ImageButton(
+            new TextureRegionDrawable(GoTox.atlas.findRegion("share")),
+            new TextureRegionDrawable(GoTox.atlas.findRegion("share_down"))
+        );
 
         addChild(shareBtn);
         shareBtn.setX(getWidth() - rateBtn.getWidth() - 20);
@@ -105,19 +118,6 @@ public class LevelList extends StageGame {
         });
     }
 
-    public int getSelectedLevelId() {
-        return selectedLevelId;
-    }
-
-    private ClickListener iconListener = new ClickListener() {
-        @Override
-        public void clicked(InputEvent event, float x, float y) {
-            selectedLevelId = ((LevelIcon)event.getTarget()).getId();
-            GoTox.media.playSound("click.ogg");
-            call(ON_LEVEL_SELECTED);
-        }
-    };
-
     @Override
     public boolean keyUp(int keycode) {
         if (keycode == Input.Keys.ESCAPE || keycode == Input.Keys.BACK) {
@@ -125,6 +125,11 @@ public class LevelList extends StageGame {
             call(ON_BACK);
             return true;
         }
+
         return super.keyUp(keycode);
+    }
+
+    public int getSelectedLevelId() {
+        return selectedLevelId;
     }
 }

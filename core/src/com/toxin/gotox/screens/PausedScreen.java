@@ -28,13 +28,16 @@ public class PausedScreen extends Group{
         title = new Image(GoTox.atlas.findRegion("paused"));
         title.setX((w - title.getWidth()) / 2);
         title.setY(h);
+
         addActor(title);
 
-        resume = new ImageButton(new TextureRegionDrawable(GoTox.atlas.findRegion("play_btn")),
-                new TextureRegionDrawable(GoTox.atlas.findRegion("play_btn_down")
-                ));
+        resume = new ImageButton(
+            new TextureRegionDrawable(GoTox.atlas.findRegion("play_btn")),
+            new TextureRegionDrawable(GoTox.atlas.findRegion("play_btn_down"))
+        );
 
         addActor(resume);
+
         resume.setY((h - resume.getHeight()) / 2 - 60);
         resume.setX(w / 2 - resume.getWidth() - 30);
         resume.setColor(1, 1, 1, 0);
@@ -51,13 +54,13 @@ public class PausedScreen extends Group{
         );
 
         addActor(quit);
+
         quit.setY((h - quit.getHeight()) / 2 - 60);
         quit.setX(w / 2 + 30);
         quit.setColor(1, 1, 1, 0);
         quit.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-
                 fire(new MessageEvent(ON_QUIT));
             }
         });

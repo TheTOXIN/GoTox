@@ -5,6 +5,7 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 
 public class Media {
+
     private AssetManager assetManager;
 
     public Media(AssetManager assetManager) {

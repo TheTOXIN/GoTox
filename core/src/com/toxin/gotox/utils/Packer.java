@@ -4,8 +4,10 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.tools.texturepacker.TexturePacker;
 
 public class Packer {
+
     public static void main(String[] args) {
         TexturePacker.Settings set = new TexturePacker.Settings();
+
         set.filterMin = Texture.TextureFilter.MipMapLinearNearest;
         set.filterMag = Texture.TextureFilter.Linear;
         set.paddingX = 2;

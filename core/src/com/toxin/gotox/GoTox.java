@@ -24,6 +24,9 @@ import java.lang.String;
 
 import java.util.Locale;
 
+import static com.toxin.gotox.Setting.HEIGHT_SCREEN;
+import static com.toxin.gotox.Setting.WIDTH_SCREEN;
+
 public class GoTox extends Game {
 
     public static final int SHOW_BANNER = 1;
@@ -33,27 +36,20 @@ public class GoTox extends Game {
     public static final int OPEN_MARKET = 5;
     public static final int SHARE = 6;
 
-    private boolean loadingAssets = false;
-    private AssetManager assetManager;
-
+    public static Data data;
+    public static Media media;
     public static TextureAtlas atlas;
     public static BitmapFont font40;
 
-    private I18NBundle bundle;
-    private String path_to_atlas;
-
+    private AssetManager assetManager;
     private GameCallBack gameCallback;
-
-    public static Media media;
-
     private Intro intro;
-
-    public static Data data;
-
     private LevelList levelList;
     private Level level;
-    private int lastLevelId;
 
+    private String path_to_atlas;
+    private int lastLevelId;
+    private boolean loadingAssets;
 
     public GoTox(GameCallBack gameCallback) {
         this.gameCallback = gameCallback;
@@ -61,12 +57,12 @@ public class GoTox extends Game {
 
     @Override
     public void create () {
-        StageGame.setAppSize(800, 480);
+        StageGame.setAppSize(WIDTH_SCREEN, HEIGHT_SCREEN);
 
         Gdx.input.setCatchBackKey(true);
 
         Locale locale = Locale.getDefault();
-        bundle = I18NBundle.createBundle(Gdx.files.internal("MyBundle"), locale);
+        I18NBundle bundle = I18NBundle.createBundle(Gdx.files.internal("MyBundle"), locale);
         path_to_atlas = bundle.get("path");
 
 

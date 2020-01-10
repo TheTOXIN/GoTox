@@ -27,13 +27,16 @@ public class LevelFailedScreen extends Group{
         title = new Image(GoTox.atlas.findRegion("game_over"));
         title.setX((w-title.getWidth())/2);
         title.setY(h);
+
         addActor(title);
 
         retry = new ImageButton(
-                new TextureRegionDrawable(GoTox.atlas.findRegion("retry_btn")),
-                new TextureRegionDrawable(GoTox.atlas.findRegion("retry_btn_down"))    );
+            new TextureRegionDrawable(GoTox.atlas.findRegion("retry_btn")),
+            new TextureRegionDrawable(GoTox.atlas.findRegion("retry_btn_down"))
+        );
 
         addActor(retry);
+
         retry.setY((h-retry.getHeight())/2-60);
         retry.setX(w/2-retry.getWidth()-30);
         retry.setColor(1,1,1,0);
@@ -47,11 +50,12 @@ public class LevelFailedScreen extends Group{
         });
 
         quit = new ImageButton(
-                new TextureRegionDrawable(GoTox.atlas.findRegion("quit_btn")),
-                new TextureRegionDrawable(GoTox.atlas.findRegion("quit_btn_down"))
+            new TextureRegionDrawable(GoTox.atlas.findRegion("quit_btn")),
+            new TextureRegionDrawable(GoTox.atlas.findRegion("quit_btn_down"))
         );
 
         addActor(quit);
+
         quit.setY((h-quit.getHeight())/2-60);
         quit.setX(w/2 + 30);
         quit.setColor(1,1,1,0);

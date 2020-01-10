@@ -26,16 +26,19 @@ public class LevelCompletedScreen extends Group{
         title = new Image(GoTox.atlas.findRegion("level_completed"));
         title.setX((w-title.getWidth())/2);
         title.setY(h);
+
         addActor(title);
 
         done = new ImageButton(
-                new TextureRegionDrawable(GoTox.atlas.findRegion("done_btn")),
-                new TextureRegionDrawable(GoTox.atlas.findRegion("done_btn_down")) );
+            new TextureRegionDrawable(GoTox.atlas.findRegion("done_btn")),
+            new TextureRegionDrawable(GoTox.atlas.findRegion("done_btn_down"))
+        );
+
         addActor(done);
+
         done.setY((h-done.getHeight())/2 - 60);
         done.setX(w/2 - done.getWidth()/2);
         done.setColor(1,1,1,0);
-
         done.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {

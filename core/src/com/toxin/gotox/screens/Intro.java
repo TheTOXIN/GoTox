@@ -13,6 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.boontaran.games.StageGame;
 import com.toxin.gotox.GoTox;
+
 import java.lang.String;
 
 public class Intro extends StageGame {
@@ -24,7 +25,6 @@ public class Intro extends StageGame {
     private ImageButton playBtn;
 
     public Intro() {
-
         Image bg = new Image(GoTox.atlas.findRegion("intro_bg"));
         addBackground(bg, true, false);
 
@@ -47,8 +47,8 @@ public class Intro extends StageGame {
         title.addAction(Actions.delay(0.5f, move));
 
         playBtn = new ImageButton(
-                new TextureRegionDrawable(GoTox.atlas.findRegion("play_btn")),
-                new TextureRegionDrawable(GoTox.atlas.findRegion("play_btn_down"))
+            new TextureRegionDrawable(GoTox.atlas.findRegion("play_btn")),
+            new TextureRegionDrawable(GoTox.atlas.findRegion("play_btn_down"))
         );
 
         addChild(playBtn);
@@ -62,7 +62,6 @@ public class Intro extends StageGame {
 
         playBtn.setColor(1, 1, 1, 0);
         playBtn.addAction(Actions.delay(0.8f, alphaAction));
-
         playBtn.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -83,38 +82,17 @@ public class Intro extends StageGame {
 
     public boolean keyUp(int keycode) {
         if (keycode == Input.Keys.ESCAPE || keycode == Input.Keys.BACK) {
-            return  true;
+            return true;
         }
+
         return super.keyUp(keycode);
     }
 
-    protected  void onDelayCall(String code) {
+    protected void onDelayCall(String code) {
         if (code.equals("delay1")) {
             call(ON_PLAY);
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }

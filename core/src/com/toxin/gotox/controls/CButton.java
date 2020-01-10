@@ -8,6 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 public class CButton extends Group {
 
     private Image up, down;
+
     private boolean isPressed;
 
     public CButton(Image up, Image down, float minHeight) {

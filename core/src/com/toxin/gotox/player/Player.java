@@ -26,9 +26,9 @@ import com.toxin.gotox.levels.Level;
 
 import java.util.ArrayList;
 
-public class Player extends ActorClip implements IBody{
+public class Player extends ActorClip implements IBody {
 
-    private Image roverImg, astronautImg, astronautFallImg, frontWheelImage,rearWheelImg;
+    private Image roverImg, astronautImg, astronautFallImg, frontWheelImage, rearWheelImg;
 
     private Group frontWheelCont, rearWheelCont, astronautFallCont;
 
@@ -38,7 +38,7 @@ public class Player extends ActorClip implements IBody{
 
     private World world;
 
-    private boolean hasDestoyed = false;
+    private boolean hasDestroyed = false;
     private boolean destroyOnNextUpdate = false;
 
     private boolean isTouchGround = true;
@@ -48,13 +48,12 @@ public class Player extends ActorClip implements IBody{
 
     private Level level;
 
-
     public Player(Level level) {
         this.level = level;
 
         roverImg = new Image(GoTox.atlas.findRegion("rover"));
         childs.addActor(roverImg);
-        roverImg.setX(-roverImg.getWidth()/2);
+        roverImg.setX(-roverImg.getWidth() / 2);
 
         roverImg.setY(-15);
 
@@ -69,8 +68,8 @@ public class Player extends ActorClip implements IBody{
         astronautFallImg = new Image(GoTox.atlas.findRegion("astronaut_fall"));
         astronautFallCont.addActor(astronautFallImg);
 
-        astronautFallImg.setX(-astronautFallImg.getWidth()/2);
-        astronautFallImg.setY(-astronautFallImg.getHeight()/2);
+        astronautFallImg.setX(-astronautFallImg.getWidth() / 2);
+        astronautFallImg.setY(-astronautFallImg.getHeight() / 2);
 
     }
 
@@ -114,8 +113,8 @@ public class Player extends ActorClip implements IBody{
         frontWheelImage = new Image(GoTox.atlas.findRegion("front_wheel"));
 
         frontWheelCont.addActor(frontWheelImage);
-        frontWheelImage.setX(-frontWheelImage.getWidth()/2);
-        frontWheelImage.setY(-frontWheelImage.getHeight()/2);
+        frontWheelImage.setX(-frontWheelImage.getWidth() / 2);
+        frontWheelImage.setY(-frontWheelImage.getHeight() / 2);
 
         getParent().addActor(frontWheelCont);
 
@@ -127,17 +126,15 @@ public class Player extends ActorClip implements IBody{
         rDef.initialize(rover, frontWheel, new Vector2(frontWheel.getPosition()));
         frontWheelJoint = world.createJoint(rDef);
 
-
         rearWheel = createWheel(world, 20 / Level.WORLD_SCALE);
         rearWheel.setTransform(rover.getPosition().x - 62 / Level.WORLD_SCALE, rover.getPosition().y - 8 / Level.WORLD_SCALE, 0);
         rDef = new RevoluteJointDef();
 
-
         rearWheelCont = new Group();
         rearWheelImg = new Image(GoTox.atlas.findRegion("rear_wheel"));
         rearWheelCont.addActor(rearWheelImg);
-        rearWheelImg.setX(-rearWheelImg.getWidth()/2);
-        rearWheelImg.setY(-rearWheelImg.getHeight()/2);
+        rearWheelImg.setX(-rearWheelImg.getWidth() / 2);
+        rearWheelImg.setY(-rearWheelImg.getHeight() / 2);
 
         getParent().addActor(rearWheelCont);
         data = new UserData();
@@ -155,27 +152,24 @@ public class Player extends ActorClip implements IBody{
             vertices[i] -= centroid.x;
             vertices[i + 1] -= centroid.y;
 
-            i+= 2;
+            i += 2;
         }
         vertices = DouglasPeucker.simplify(vertices, 6);
         Level.scaleToWorld(vertices);
         triangles = Level.getTriangles(new Polygon(vertices));
         astronaut = createBodyFromTriangles(world, triangles);
-        astronaut.setTransform(rover.getPosition().x - 0 / Level.WORLD_SCALE, rover.getPosition().y + 30/ Level.WORLD_SCALE, 0);
+        astronaut.setTransform(rover.getPosition().x - 0 / Level.WORLD_SCALE, rover.getPosition().y + 30 / Level.WORLD_SCALE, 0);
 
         WeldJointDef actronautDef = new WeldJointDef();
         actronautDef.initialize(rover, astronaut, new Vector2(astronaut.getPosition()));
         astroJoint = world.createJoint(actronautDef);
 
-
-
-
         return rover;
     }
 
     private Body createWheel(World world, float rad) {
-
         BodyDef def = new BodyDef();
+
         def.type = BodyDef.BodyType.DynamicBody;
         def.linearDamping = 0;
         def.angularDamping = 1f;
@@ -194,14 +188,13 @@ public class Player extends ActorClip implements IBody{
         body.createFixture(fDef);
         shape.dispose();
 
-
         return body;
     }
 
     private float[] traceOutline(String regionName) {
-
         Texture bodyOutLine = GoTox.atlas.findRegion(regionName).getTexture();
         TextureAtlas.AtlasRegion reg = GoTox.atlas.findRegion(regionName);
+
         int w = reg.getRegionWidth();
         int h = reg.getRegionHeight();
         int x = reg.getRegionX();
@@ -211,7 +204,7 @@ public class Player extends ActorClip implements IBody{
         Pixmap allPixmap = bodyOutLine.getTextureData().consumePixmap();
 
         Pixmap pixmap = new Pixmap(w, h, Pixmap.Format.RGBA8888);
-        pixmap.drawPixmap(allPixmap,0,0,x,y,w,h);
+        pixmap.drawPixmap(allPixmap, 0, 0, x, y, w, h);
 
         allPixmap.dispose();
 
@@ -220,9 +213,9 @@ public class Player extends ActorClip implements IBody{
         w = pixmap.getWidth();
         h = pixmap.getHeight();
 
-        int [][] map;
+        int[][] map;
         map = new int[w][h];
-        for (x=0; x < w; x++) {
+        for (x = 0; x < w; x++) {
             for (y = 0; y < h; y++) {
                 pixel = pixmap.getPixel(x, y);
                 if ((pixel & 0x000000ff) == 0) {
@@ -239,14 +232,15 @@ public class Player extends ActorClip implements IBody{
         ms.invertY();
         ArrayList<float[]> traces = ms.traceMap();
 
-        float[] polyVertices = traces.get(0);
-        return polyVertices;
+        return traces.get(0);
     }
 
     private Body createBodyFromTriangles(World world, Array<Polygon> triangles) {
         BodyDef def = new BodyDef();
+
         def.type = BodyDef.BodyType.DynamicBody;
         def.linearDamping = 0;
+
         Body body = world.createBody(def);
 
         for (Polygon triangle : triangles) {
@@ -261,6 +255,7 @@ public class Player extends ActorClip implements IBody{
             body.createFixture(fDef);
             shape.dispose();
         }
+
         return body;
     }
 
@@ -290,18 +285,22 @@ public class Player extends ActorClip implements IBody{
         if (value < 0.2f) value = 0.2f;
 
         rover.applyLinearImpulse(0, jumpImpulse * value,
-                rover.getWorldCenter().x + 5 / Level.WORLD_SCALE,
-                rover.getWorldCenter().y, true);
+            rover.getWorldCenter().x + 5 / Level.WORLD_SCALE,
+            rover.getWorldCenter().y, true
+        );
+
         isTouchGround = false;
         jumpWait = 0.3f;
     }
 
-    public void jumpForward(float value){
+    public void jumpForward(float value) {
         if (value < 0.2f) value = 0.2f;
 
         rover.applyLinearImpulse(0, jumpImpulse * value,
-                rover.getWorldCenter().x - 4 / Level.WORLD_SCALE,
-                rover.getWorldCenter().y, true);
+            rover.getWorldCenter().x - 4 / Level.WORLD_SCALE,
+            rover.getWorldCenter().y, true
+        );
+
         isTouchGround = false;
         jumpWait = 0.3f;
     }
@@ -314,10 +313,12 @@ public class Player extends ActorClip implements IBody{
 
         if (destroyOnNextUpdate) {
             destroyOnNextUpdate = false;
+
             world.destroyJoint(frontWheelJoint);
             world.destroyJoint(rearWheelJoint);
             world.destroyJoint(astroJoint);
             world.destroyBody(astronaut);
+
             astronautImg.remove();
 
             astronautFall();
@@ -328,6 +329,7 @@ public class Player extends ActorClip implements IBody{
 
     private void astronautFall() {
         BodyDef def = new BodyDef();
+
         def.type = BodyDef.BodyType.DynamicBody;
         def.linearDamping = 0;
         def.angularDamping = 0;
@@ -364,13 +366,13 @@ public class Player extends ActorClip implements IBody{
     }
 
     public void destroy() {
-        if (hasDestoyed) return;
-        hasDestoyed = true;
+        if (hasDestroyed) return;
+        hasDestroyed = true;
 
         destroyOnNextUpdate = true;
     }
 
-    public boolean isHasDestoyed() {
-        return hasDestoyed;
+    public boolean isHasDestroyed() {
+        return hasDestroyed;
     }
 }

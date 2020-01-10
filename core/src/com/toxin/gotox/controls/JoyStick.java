@@ -8,10 +8,11 @@ import com.toxin.gotox.GoTox;
 
 public class JoyStick extends Group {
 
-    private Image idle, right, left;
     private static final int IDLE = 0;
     private static final int RIGHT = 1;
     private static final int LEFT = 2;
+
+    private Image idle, right, left;
     private int direction;
 
     public JoyStick(float minHeight) {

@@ -47,10 +47,10 @@ import com.toxin.gotox.screens.LevelCompletedScreen;
 import com.toxin.gotox.screens.LevelFailedScreen;
 import com.toxin.gotox.screens.PausedScreen;
 
-public class Level extends StageGame{
+public class Level extends StageGame {
     private String directory;
 
-    public static final  float WORLD_SCALE = 30;
+    public static final float WORLD_SCALE = 30;
 
     public static final int ON_RESTART = 1;
     public static final int ON_QUIT = 2;
@@ -87,7 +87,7 @@ public class Level extends StageGame{
     private static final float LAND_RESTITUTION = 0.5f;
     private World world;
     private Box2DDebugRenderer debugRenderer;
-    private Array<Body> bodies = new Array<Body>();
+    private Array<Body> bodies = new Array<>();
 
     private boolean hasBeenBuilt = false;
 
@@ -111,9 +111,7 @@ public class Level extends StageGame{
     protected void onDelayCall(String code) {
         if (code.equals("build_level")) {
             build();
-
             removeOverlayChild(pleaseWait);
-
         } else if (code.equals("resumeLevel2")) {
             resumeLevel2();
         }
@@ -124,8 +122,6 @@ public class Level extends StageGame{
         Image bg = new Image(GoTox.atlas.findRegion(region));
         addBackground(bg, true, false);
     }
-
-
 
     private void build() {
         hasBeenBuilt = true;
@@ -159,17 +155,17 @@ public class Level extends StageGame{
         joyStick.setPosition(15, 15);
 
         jumpBackBtn = new CButton(
-                new Image(GoTox.atlas.findRegion("jump1")),
-                new Image(GoTox.atlas.findRegion("jump1_down")),
-                mmToPx(10)
+            new Image(GoTox.atlas.findRegion("jump1")),
+            new Image(GoTox.atlas.findRegion("jump1_down")),
+            mmToPx(10)
         );
 
         addOverlayChild(jumpBackBtn);
 
         jumpForwardBtn = new CButton(
-                new Image(GoTox.atlas.findRegion("jump2")),
-                new Image(GoTox.atlas.findRegion("jump2_down")),
-                mmToPx(10)
+            new Image(GoTox.atlas.findRegion("jump2")),
+            new Image(GoTox.atlas.findRegion("jump2_down")),
+            mmToPx(10)
         );
 
         addOverlayChild(jumpForwardBtn);
@@ -197,7 +193,7 @@ public class Level extends StageGame{
             }
         });
 
-        jumpForwardBtn.addListener(new ClickListener(){
+        jumpForwardBtn.addListener(new ClickListener() {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 if (state == PLAY) {
@@ -259,7 +255,6 @@ public class Level extends StageGame{
         world.getBodies(bodies);
 
         updateCamera();
-
     }
 
     private void resumelevel() {
@@ -308,6 +303,7 @@ public class Level extends StageGame{
                 playerTouch(bodyB);
                 return;
             }
+
             if (bodyB == player.astronaut) {
                 playerTouch(bodyA);
                 return;
@@ -315,47 +311,7 @@ public class Level extends StageGame{
 
             if (bodyA == player.rover) {
                 UserData data = (UserData) bodyB.getUserData();
-                if (data!= null) {
-                    if (data.name.equals("land")) {
-                        player.touchGround();
-                        return;
-                    }
-                }
-            }if (bodyB == player.rover) {
-                UserData data = (UserData) bodyA.getUserData();
-                if (data!= null) {
-                    if (data.name.equals("land")) {
-                        player.touchGround();
-                        return;
-                    }
-                }
-            }if (bodyA == player.frontWheel) {
-                UserData data = (UserData) bodyB.getUserData();
-                if (data!= null) {
-                    if (data.name.equals("land")) {
-                        player.touchGround();
-                        return;
-                    }
-                }
-            }if (bodyB == player.frontWheel) {
-                UserData data = (UserData) bodyA.getUserData();
-                if (data!= null) {
-                    if (data.name.equals("land")) {
-                        player.touchGround();
-                        return;
-                    }
-                }
-            }if (bodyA == player.rearWheel) {
-                UserData data = (UserData) bodyB.getUserData();
-                if (data!= null) {
-                    if (data.name.equals("land")) {
-                        player.touchGround();
-                        return;
-                    }
-                }
-            }if (bodyB == player.rearWheel) {
-                UserData data = (UserData) bodyA.getUserData();
-                if (data!= null) {
+                if (data != null) {
                     if (data.name.equals("land")) {
                         player.touchGround();
                         return;
@@ -363,11 +319,55 @@ public class Level extends StageGame{
                 }
             }
 
+            if (bodyB == player.rover) {
+                UserData data = (UserData) bodyA.getUserData();
+                if (data != null) {
+                    if (data.name.equals("land")) {
+                        player.touchGround();
+                        return;
+                    }
+                }
+            }
 
+            if (bodyA == player.frontWheel) {
+                UserData data = (UserData) bodyB.getUserData();
+                if (data != null) {
+                    if (data.name.equals("land")) {
+                        player.touchGround();
+                        return;
+                    }
+                }
+            }
 
+            if (bodyB == player.frontWheel) {
+                UserData data = (UserData) bodyA.getUserData();
+                if (data != null) {
+                    if (data.name.equals("land")) {
+                        player.touchGround();
+                        return;
+                    }
+                }
+            }
 
+            if (bodyA == player.rearWheel) {
+                UserData data = (UserData) bodyB.getUserData();
+                if (data != null) {
+                    if (data.name.equals("land")) {
+                        player.touchGround();
+                        return;
+                    }
+                }
+            }
 
-
+            if (bodyB == player.rearWheel) {
+                UserData data = (UserData) bodyA.getUserData();
+                if (data != null) {
+                    if (data.name.equals("land")) {
+                        player.touchGround();
+                        return;
+                    }
+                }
+            }
         }
 
         @Override
@@ -387,8 +387,8 @@ public class Level extends StageGame{
     };
 
     private void loadMap(String tmxFile) {
-
         TmxMapLoader.Parameters params = new TmxMapLoader.Parameters();
+
         params.generateMipMaps = true;
         params.textureMinFilter = TextureFilter.MipMapLinearNearest;
         params.textureMagFilter = TextureFilter.Linear;
@@ -396,6 +396,7 @@ public class Level extends StageGame{
         map = new TmxMapLoader().load(tmxFile, params);
 
         MapProperties prop = map.getProperties();
+
         mapWidth = prop.get("width", Integer.class);
         mapHeight = prop.get("height", Integer.class);
         tilePixelWidth = prop.get("tilewidth", Integer.class);
@@ -408,19 +409,13 @@ public class Level extends StageGame{
 
             if (name.equals("land")) {
                 createLands(layer.getObjects());
-            }
-            else if (name.equals("items")) {
+            } else if (name.equals("items")) {
                 createItems(layer.getObjects());
-            }
-            else {
-                TileLayer tLayer = new TileLayer(camera, map, name,stage.getBatch());
+            } else {
+                TileLayer tLayer = new TileLayer(camera, map, name, stage.getBatch());
                 addChild(tLayer);
             }
-
         }
-
-
-
     }
 
     private void createItems(MapObjects objects) {
@@ -432,6 +427,7 @@ public class Level extends StageGame{
             if (object.getName().equals("player")) {
                 player = new Player(this);
                 player.setPosition(rect.x, rect.y);
+
                 addChild(player);
                 addBody(player);
 
@@ -449,12 +445,13 @@ public class Level extends StageGame{
         rectangle.height /= WORLD_SCALE;
 
         BodyDef def = new BodyDef();
+
         def.type = BodyType.StaticBody;
         def.linearDamping = 0;
 
         FixtureDef fdef = new FixtureDef();
         PolygonShape shape = new PolygonShape();
-        shape.setAsBox(rectangle.width/2, rectangle.height/2);
+        shape.setAsBox(rectangle.width / 2, rectangle.height / 2);
 
         fdef.shape = shape;
         fdef.restitution = LAND_RESTITUTION;
@@ -462,8 +459,10 @@ public class Level extends StageGame{
         fdef.isSensor = true;
 
         Body body = world.createBody(def);
+
         body.createFixture(fdef);
-        body.setTransform(rectangle.x + rectangle.width/2, rectangle.y + rectangle.height/2, 0);
+        body.setTransform(rectangle.x + rectangle.width / 2, rectangle.y + rectangle.height / 2, 0);
+
         shape.dispose();
 
         return body;
@@ -474,6 +473,7 @@ public class Level extends StageGame{
             GoTox.media.playMusic(musicName, true);
         }
     }
+
     private void stopMusic() {
         if (musicName != null && musicHasLoaded) {
             GoTox.media.stopMusic(musicName);
@@ -485,12 +485,12 @@ public class Level extends StageGame{
         jumpBackBtn.setVisible(false);
         jumpForwardBtn.setVisible(false);
     }
+
     private void showButtons() {
         joyStick.setVisible(true);
         jumpBackBtn.setVisible(true);
         jumpForwardBtn.setVisible(true);
     }
-
 
     private void addBody(IBody item) {
         Body body = item.createBody(world);
@@ -512,7 +512,7 @@ public class Level extends StageGame{
                 childs = getTriangles(polygon);
                 addPolygonLand(childs);
             } else if (object instanceof RectangleMapObject) {
-                rectangle = ((RectangleMapObject)object).getRectangle();
+                rectangle = ((RectangleMapObject) object).getRectangle();
                 addRectangleLand(rectangle);
             }
         }
@@ -530,7 +530,7 @@ public class Level extends StageGame{
 
         FixtureDef fdef = new FixtureDef();
         PolygonShape shape = new PolygonShape();
-        shape.setAsBox(rectangle.width/2, rectangle.height/2);
+        shape.setAsBox(rectangle.width / 2, rectangle.height / 2);
 
         fdef.shape = shape;
         fdef.restitution = LAND_RESTITUTION;
@@ -538,7 +538,7 @@ public class Level extends StageGame{
 
         Body body = world.createBody(def);
         body.createFixture(fdef);
-        body.setTransform(rectangle.x + rectangle.width/2, rectangle.y + rectangle.height/2, 0);
+        body.setTransform(rectangle.x + rectangle.width / 2, rectangle.y + rectangle.height / 2, 0);
         body.setUserData(new UserData(null, "land"));
         shape.dispose();
     }
@@ -566,17 +566,17 @@ public class Level extends StageGame{
     }
 
     public static Array<Polygon> getTriangles(Polygon polygon) {
-        Array<Polygon> trianglesPoly = new Array<Polygon>();
+        Array<Polygon> trianglesPoly = new Array<>();
 
         EarClippingTriangulator ear = new EarClippingTriangulator();
-        float vertices[] = polygon.getTransformedVertices();
+        float[] vertices = polygon.getTransformedVertices();
         ShortArray triangleIds = ear.computeTriangles(vertices);
-        Vector2 list[] = fromArray(vertices);
+        Vector2[] list = fromArray(vertices);
 
         Polygon triangle;
 
-        int num = triangleIds.size/3;
-        Vector2 triPoints[];
+        int num = triangleIds.size / 3;
+        Vector2[] triPoints;
         int i, j;
 
         for (i = 0; i < num; i++) {
@@ -594,10 +594,10 @@ public class Level extends StageGame{
 
     }
 
-    public static Vector2[] fromArray(float vertices[]) {
-        int num = vertices.length/2;
+    public static Vector2[] fromArray(float[] vertices) {
+        int num = vertices.length / 2;
         int i;
-        Vector2 result[] = new Vector2[num];
+        Vector2[] result = new Vector2[num];
 
         for (i = 0; i < num; i++) {
             result[i] = new Vector2(vertices[2 * i], vertices[2 * i + 1]);
@@ -606,7 +606,7 @@ public class Level extends StageGame{
     }
 
     public static float[] toArray(Vector2[] points) {
-        float vertices[] = new float[points.length * 2];
+        float[] vertices = new float[points.length * 2];
         int i;
 
         for (i = 0; i < points.length; i++) {
@@ -623,13 +623,10 @@ public class Level extends StageGame{
     }
 
     public static void scaleToWorld(float[] vertices) {
-        int i;
-
-        for (i = 0; i < vertices.length; i++) {
+        for (int i = 0; i < vertices.length; i++) {
             vertices[i] /= WORLD_SCALE;
         }
     }
-
 
     private void resumeLevel2() {
         removeOverlayChild(pausedScreen);
@@ -639,17 +636,17 @@ public class Level extends StageGame{
         camera.position.x = player.getX();
         camera.position.y = player.getY();
 
-        if (camera.position.x - camera.viewportWidth/2 < 0) {
-            camera.position.x = camera.viewportWidth/2;
+        if (camera.position.x - camera.viewportWidth / 2 < 0) {
+            camera.position.x = camera.viewportWidth / 2;
         }
-        if (camera.position.x + camera.viewportWidth/2 > levelWidth) {
-            camera.position.x = levelWidth - camera.viewportWidth/2;
+        if (camera.position.x + camera.viewportWidth / 2 > levelWidth) {
+            camera.position.x = levelWidth - camera.viewportWidth / 2;
         }
-        if (camera.position.y - camera.viewportHeight/2 < 0) {
-            camera.position.y = camera.viewportHeight/2;
+        if (camera.position.y - camera.viewportHeight / 2 < 0) {
+            camera.position.y = camera.viewportHeight / 2;
         }
-        if (camera.position.y + camera.viewportHeight/2 > levelHeight) {
-            camera.position.y = levelHeight - camera.viewportHeight/2;
+        if (camera.position.y + camera.viewportHeight / 2 > levelHeight) {
+            camera.position.y = levelHeight - camera.viewportHeight / 2;
         }
 
     }
@@ -668,7 +665,7 @@ public class Level extends StageGame{
         UserData data = (UserData) body.getUserData();
 
         if (data != null) {
-            if (data.name.equals("land") && !player.isHasDestoyed()) {
+            if (data.name.equals("land") && !player.isHasDestroyed()) {
                 if (player.getRotation() < -90 || player.getRotation() > 90) {
                     player.destroy();
                     GoTox.media.playSound("crash.ogg");
@@ -764,7 +761,7 @@ public class Level extends StageGame{
 
                 if (actor != null) {
                     actor.setPosition(body.getPosition().x * WORLD_SCALE, body.getPosition().y * WORLD_SCALE);
-                    actor.setRotation(body.getAngle() * 180/3.14f);
+                    actor.setRotation(body.getAngle() * 180 / 3.14f);
                 }
             }
         }
@@ -822,19 +819,19 @@ public class Level extends StageGame{
         }
     }
 
-    public static Vector2 calculateCentroid(float vertices[]) {
+    public static Vector2 calculateCentroid(float[] vertices) {
         Vector2[] points = fromArray(vertices);
         float x = 0;
         float y = 0;
         int pointCount = points.length;
         for (int i = 0; i < pointCount - 1; i++) {
-            final  Vector2 point = points[i];
+            final Vector2 point = points[i];
             x += point.x;
             y += point.y;
         }
 
-        x = x/pointCount;
-        y = y/pointCount - 33;
+        x = x / pointCount;
+        y = y / pointCount - 33;
 
         return new Vector2(x, y);
     }
