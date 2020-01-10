@@ -48,9 +48,9 @@ import com.toxin.gotox.screens.LevelFailedScreen;
 import com.toxin.gotox.screens.PausedScreen;
 
 public class Level extends StageGame {
-    private String directory;
 
     public static final float WORLD_SCALE = 30;
+    private static final float LAND_RESTITUTION = 0.5f;
 
     public static final int ON_RESTART = 1;
     public static final int ON_QUIT = 2;
@@ -64,38 +64,33 @@ public class Level extends StageGame {
     private static final int LEVEL_COMPLETED = 3;
     private static final int PAUSED = 4;
 
+    private int mapWidth, mapHeight, tilePixelWidth, tilePixelHeight, levelWidth, levelHeight;
     private int state = 1;
 
-    private JumpGauge jumpGauge;
+    private String directory;
+    private String musicName;
+    private String customBackground = null;
 
-    private int mapWidth, mapHeight, tilePixelWidth, tilePixelHeight, levelWidth, levelHeight;
+    private boolean hasBeenBuilt;
+    private boolean musicHasLoaded;
+    private boolean moveFrontKey, moveBackKey;
 
     private Player player;
     private Body finish;
-
-    private boolean moveFrontKey, moveBackKey;
-    private Image pleaseWait;
+    private JumpGauge jumpGauge;
 
     private JoyStick joyStick;
     private CButton jumpBackBtn, jumpForwardBtn;
 
-    private String musicName;
-    private boolean musicHasLoaded;
-
-    private String customBackground = null;
-
-    private static final float LAND_RESTITUTION = 0.5f;
     private World world;
     private Box2DDebugRenderer debugRenderer;
     private Array<Body> bodies = new Array<>();
 
-    private boolean hasBeenBuilt = false;
-
     private TiledMap map;
-
     private LevelCompletedScreen levelCompletedScreen;
     private LevelFailedScreen levelFailedScreen;
     private PausedScreen pausedScreen;
+    private Image pleaseWait;
 
     public Level(String directory) {
         this.directory = directory;
