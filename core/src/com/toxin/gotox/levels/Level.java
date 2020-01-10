@@ -282,6 +282,7 @@ public class Level extends StageGame {
             GoTox.media.stopMusic(musicName);
             GoTox.media.removeMusic(musicName);
         }
+
         if (world != null) world.dispose();
         map.dispose();
 

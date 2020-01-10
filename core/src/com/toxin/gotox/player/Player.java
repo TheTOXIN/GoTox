@@ -70,7 +70,6 @@ public class Player extends ActorClip implements IBody {
 
         astronautFallImg.setX(-astronautFallImg.getWidth() / 2);
         astronautFallImg.setY(-astronautFallImg.getHeight() / 2);
-
     }
 
     public void touchGround() {
@@ -103,6 +102,7 @@ public class Player extends ActorClip implements IBody {
         vertices = DouglasPeucker.simplify(vertices, 4);
         Level.scaleToWorld(vertices);
         Array<Polygon> triangles = Level.getTriangles(new Polygon(vertices));
+
         rover = createBodyFromTriangles(world, triangles);
         rover.setTransform((getX()) / Level.WORLD_SCALE, (getY()) / Level.WORLD_SCALE, 0);
 
@@ -154,6 +154,7 @@ public class Player extends ActorClip implements IBody {
 
             i += 2;
         }
+
         vertices = DouglasPeucker.simplify(vertices, 6);
         Level.scaleToWorld(vertices);
         triangles = Level.getTriangles(new Polygon(vertices));
@@ -282,23 +283,22 @@ public class Player extends ActorClip implements IBody {
     }
 
     public void jumpBack(float value) {
-        if (value < 0.2f) value = 0.2f;
-
-        rover.applyLinearImpulse(0, jumpImpulse * value,
-            rover.getWorldCenter().x + 5 / Level.WORLD_SCALE,
-            rover.getWorldCenter().y, true
-        );
-
-        isTouchGround = false;
-        jumpWait = 0.3f;
+        jumpAction(value, -10);
     }
 
     public void jumpForward(float value) {
+        jumpAction(value, 10);
+    }
+
+    public void jumpAction(float value, int direct) {
         if (value < 0.2f) value = 0.2f;
 
-        rover.applyLinearImpulse(0, jumpImpulse * value,
-            rover.getWorldCenter().x - 4 / Level.WORLD_SCALE,
-            rover.getWorldCenter().y, true
+        rover.applyLinearImpulse(
+             direct * value,
+            jumpImpulse * value,
+            rover.getWorldCenter().x + direct / Level.WORLD_SCALE,
+            rover.getWorldCenter().y,
+            true
         );
 
         isTouchGround = false;
