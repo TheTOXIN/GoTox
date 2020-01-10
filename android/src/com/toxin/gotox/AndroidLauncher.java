@@ -11,15 +11,11 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.badlogic.gdx.backends.android.AndroidApplication;
-import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
-import com.google.android.gms.ads.AdView;
-import com.toxin.gotox.GoTox;
 
 public class AndroidLauncher extends AndroidApplication {
 
 	private RelativeLayout mainView;
 
-	private AdView bannerView;
 	private ViewGroup bannerContainer;
 	private RelativeLayout.LayoutParams bannerParams;
 
