@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="200" height="25" tilewidth="32" tileheight="32" nextobjectid="222">
+ <imagelayer name="Image Layer 1">
+  <image source="image1.png" width="800" height="800"/>
+ </imagelayer>
+ <imagelayer name="Image Layer 2" x="800" offsetx="800" offsety="0">
+  <image source="image2.png" width="800" height="800"/>
+ </imagelayer>
+ <imagelayer name="Image Layer 3" x="1600" offsetx="1600" offsety="0">
+  <image source="image3.png" width="800" height="800"/>
+ </imagelayer>
+ <imagelayer name="Image Layer 4" x="2400" offsetx="2400" offsety="0">
+  <image source="image4.png" width="800" height="800"/>
+ </imagelayer>
+ <imagelayer name="Image Layer 5" x="3200" offsetx="3200" offsety="0">
+  <image source="image5.png" width="800" height="800"/>
+ </imagelayer>
+ <imagelayer name="Image Layer 6" x="4000" offsetx="4000" offsety="0">
+  <image source="image6.png" width="800" height="800"/>
+ </imagelayer>
+ <imagelayer name="Image Layer 7" x="4800" offsetx="4800" offsety="0">
+  <image source="image7.png" width="800" height="800"/>
+ </imagelayer>
+ <imagelayer name="Image Layer 8" x="5600" offsetx="5600" offsety="0">
+  <image source="image8.png" width="800" height="800"/>
+ </imagelayer>
+ <objectgroup name="land">
+  <object id="3" x="11" y="566">
+   <polygon points="0,0 134,29 244,87 406,86 542,116 705,166 789,151 791,232 -10,233 -11,-6"/>
+  </object>
+  <object id="4" x="799" y="716">
+   <polygon points="0,0 179,-97 286,-106 409,-163 525,-10 528,-7 700,-10 734,-42 800,-42 799,81 1,80 0,3"/>
+  </object>
+  <object id="5" x="1599" y="673">
+   <polygon points="0,0 84,1 84,82 83,86 294,55 366,71 471,30 517,46 627,-2 681,16 763,-36 804,-9 805,121 0,123 0,2"/>
+  </object>
+  <object id="6" x="2403" y="793">
+   <polygon points="0,0 795,1 797,-290 732,-252 678,-285 557,-221 513,-253 395,-187 362,-213 249,-148 205,-183 128,-144 86,-177 10,-124 3,-130 2,-5"/>
+  </object>
+  <object id="7" x="3201" y="503">
+   <polygon points="0,0 93,2 262,260 352,239 396,213 479,208 572,249 675,259 798.273,258.818 799,291 1,291 0,0"/>
+  </object>
+  <object id="8" x="3999" y="761">
+   <polygon points="0,0 150,2 312,-30 391,-65 392,10.5 509,8.5 507,-46 700,7 799,9 800,37 1,35 0,0.636364"/>
+  </object>
+  <object id="9" x="4799" y="792">
+   <polygon points="0,0 -1,-23 69,-54 83,-69 158,-69 170,-83 258,-82 276,-99 369,-101 385,-117 473,-122 486,-137 585,-141 605,-153 641,-111 654,-130 696,-90 700,-89 685,-72 728,-27 799,-24 801,6 1,7 0,2"/>
+  </object>
+  <object id="10" x="5598" y="766">
+   <polygon points="0,0 13,-25 94,-45 141,-26 161,2 330,-42 350,-63 382,-83 450,-15 488,-4 563,-30 600,-61 630,-50 652,-26 802,-27 803,28 1,31 -1,1"/>
+  </object>
+ </objectgroup>
+ <objectgroup name="items">
+  <object id="1" name="player" x="305" y="495" width="88" height="80"/>
+  <object id="2" name="finish" x="6247" y="14" width="150" height="421"/>
+ </objectgroup>
+</map>
